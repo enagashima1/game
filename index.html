@@ -1,1 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>降ってくる単位を獲得せよ</title>
+    
+    <meta name="theme-color" content="#3498db"/>
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192x192.png">
 
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="start-screen">
+        <h1>降ってくる単位を獲得せよ</h1>
+        <div class="rules">
+            <h2>【ルール】</h2>
+            <p>マウスかキーボードの矢印キー（← →）でバーを操作し、上から落ちてくる円をゲットしよう。</p>
+            <ul>
+                <li>制限時間は<strong>15秒</strong>です。</li>
+                <li>獲得単位が<strong>30</strong>を超えると「進級」、30以下だと「留年」になります。</li>
+            </ul>
+            <h2>【円の種類】</h2>
+            <div class="circle-list">
+                <div><span class="circle-icon red"></span><strong>単位（赤）</strong>: 2単位 GET</div>
+                <div><span class="circle-icon gold"></span><strong>楽単（金）</strong>: 2単位 GET</div>
+                <div><span class="circle-icon blue"></span><strong>難単（青）</strong>: 2単位 GET (高速)</div>
+                <div><span class="circle-icon danger"></span><strong>どくろ（黒）</strong>: <strong>-2単位 & 落単+2</strong>のペナルティ</div>
+            </div>
+        </div>
+        <button id="start-button">ゲームスタート</button>
+    </div>
+
+    <div id="game-container" class="hidden">
+        <div id="info-bar">
+            <div id="timer">残り時間: 15秒</div>
+            <div id="score-area">
+                <div id="score">獲得単位: 0</div>
+                <div id="lost-units">落単数: 0</div>
+            </div>
+        </div>
+        
+        <div id="player"></div>
+
+        <div id="game-over">
+            <h2>ゲームオーバー</h2>
+            <p id="final-score">獲得単位: 0</p>
+            <p id="final-lost-units">落単数: 0</p>
+            <h3 id="final-result-message"></h3>
+            <button id="restart-button">もう一度挑戦</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('./sw.js').then((reg) => {
+            console.log('Service worker registered.', reg);
+          });
+        });
+      }
+    </script>
+
+</body>
+</html>
