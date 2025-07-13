@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
         runGame();
     });
 
+    // マウス操作
     gameContainer.addEventListener('mousemove', (e) => {
         if (timeLeft > 0) {
             let mouseX = e.clientX - gameContainer.getBoundingClientRect().left;
@@ -49,6 +50,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // ★★★ フリック（タッチ）操作用のイベントリスナーを追加 ★★★
+    gameContainer.addEventListener('touchmove', (e) => {
+        // ゲーム操作中に画面がスクロールするのを防ぐ
+        e.preventDefault(); 
+        
+        if (timeLeft > 0 && e.touches.length > 0) {
+            const touch = e.touches[0];
+            let touchX = touch.clientX - gameContainer.getBoundingClientRect().left;
+            targetPlayerX = touchX - playerWidth / 2;
+        }
+    }, { passive: false }); // preventDefaultを有効にするためのオプション
+
+    // キーボード操作
     document.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
             e.preventDefault();
