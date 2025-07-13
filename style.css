@@ -94,8 +94,8 @@ body {
 }
 
 #info-bar {
-    /* ★ 上方向の余白を25pxに変更して表示を下に下げます */
-    padding: 25px 15px 10px 15px;
+    /* ★ 上方向の余白を100pxに増やし、さらに下に移動させます */
+    padding: 100px 15px 10px 15px;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
